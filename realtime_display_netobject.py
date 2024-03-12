@@ -23,13 +23,19 @@ def display_netobject_data(root):
     print("%s" % ("=" * 60))
     #print(root)
     for child in root.children:
-        print("%s" % ("=" * 60))
+        print("%s Localhost %s" % ("=" * 30, "=" * 30))
         print("%s/%s/%s" % (path, child.name, child.rawname))
         print("     speed (bps) in/out: %8d %8d" % (child.speed[0] * 8, child.speed[1] * 8))
         print("             cps in/out: %8d %8d" % child.cps)
         print("            connections: %8d" % child.connections)
-        print(child.external_quality)
-        print(child.internal_quality)
+        if child.external_quality is not None:
+            print("external quality in/out: %8d %8d" % child.external_quality)
+        if child.internal_quality is not None:
+            print("internal quality in/out: %8d %8d" % child.internal_quality)
+        if child.rtt is not None:
+            print("                    rtt: %8d %8d" % child.rtt)
+
+
         print(child.rtt)
         
         for sub in child.children:
@@ -37,10 +43,14 @@ def display_netobject_data(root):
             print("     speed (bps) in/out: %8d %8d" % (sub.speed[0] * 8, sub.speed[1] * 8))
             print("             cps in/out: %8d %8d" % sub.cps)
             print("            connections: %8d" % sub.connections)
-            print(sub.external_quality)
-            print(sub.internal_quality)
-            print(sub.rtt)
-            print(sub.children)
+            if sub.external_quality is not None:
+                print("external quality in/out: %8d %8d" % sub.external_quality)
+            if sub.internal_quality is not None:
+                print("internal quality in/out: %8d %8d" % sub.internal_quality)
+            if sub.rtt is not None:
+                print("                    rtt: %8d %8d" % sub.rtt)
+            if sub.children is not None:
+                print(sub.children)
         print
         print("%s" % ("=" * 60))
     print

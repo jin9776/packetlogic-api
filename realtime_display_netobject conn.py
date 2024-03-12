@@ -20,24 +20,25 @@ path = "/"
 def display_netobject_data(root):
     print("%s" % ("=" * 60))
     for child in root:
-        print(child.base_service)
-        print(child.client)
-        print(child.shaping_rules)
-        print(child.session_contexts)
-        print(child.engineflags)
-    #     print("%s/%s" % (path, child.name))
-    #     print(child.hosts)
-    #     print("     speed (bps) in/out: %8d %8d" % (child.speed[0] * 8, child.speed[1] * 8))
-    #     print("             cps in/out: %8d %8d" % child.cps)
-    #     print("            connections: %8d" % child.connections)
-    # print
+        print("service : %s" % child.base_service)
+        print("client ip/port : %s/%s" % (child.client))
+        print("engineflags : %s" % child.engineflags)
+        print("External QoE in/out : %8d / %8d" % (child.external_quality))
+        print("Internal QoE in/out : %8d / %8d" % (child.internal_quality))
+        print("protocol num : %s" % child.protocol)
+        print("server ip/port : %s/%s" % (child.server))
+        print("server host : %s" % child.server_hostname)
+        print("service : %s" % child.service)
+        print("speed (bps) in/out: %8d %8d" % (child.speed[0] * 8, child.speed[1] * 8))
+        print("starttime(UNIX) : %s" % child.starttime)
+        print("matching rules : %s" % child.shaping_rules)
+        
+        print
 
 #
 # Build a view
 #
 
 #vb.filter('Visible NetObject', path)
-#vb.distribution('NetObject Level', path)
-#vb.distribution("Local Host")
 rt.add_conn_view_callback(vb, display_netobject_data)
 rt.update_forever()
