@@ -25,7 +25,9 @@ def display_netobject_data(root):
          print("     speed (bps) in/out: %8d %8d" % (child.speed[0] * 8, child.speed[1] * 8))
          print("             cps in/out: %8d %8d" % child.cps)
          print("      connection total/unest: %8d %8d" % child.connections)        
-    #print
+    print
+    if len(root) > 0:
+        rt.break_update_forever()
 
 rt.add_netobj_callback(display_netobject_data, "/", include_hosts=True)
 rt.update_forever(10)

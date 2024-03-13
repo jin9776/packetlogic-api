@@ -17,15 +17,13 @@ data = rt.get_services_data();
 
 print ("#%d subscribers active under" % (len(data)))
 print ("%s" % (data))
+print(dir(data))
 
 for no in data:
-    print(data[no])
-    #inspd = no.speed_in*8.0/1000
-    #outspd = no.speed[1]*8.0/1000
-    #print ("%-40s in=%8.2f out=%8.2f " % (no.fullpath, inspd, outspd))
-    #print("             cps in/out: %8d  %8d" % (no.cps))
-    #print("            connections: %8d  %8d" % (no.connections))
-
-
-list = rt.find("/NetObjects")
-#print(list)
+    print(no)
+    inspd = data.get(no).get("speed_in") * 8.0
+    outspd = data.get(no).get("speed_out") * 8.0
+    print("     speed (bps) in/out: %8d  %8d" % (inspd, outspd))
+    print("             cps in/out: %8d  %8d" % (data.get(no).get("cps") ))
+    print("            connections: %8d" % (data.get(no).get("connections")))
+    print

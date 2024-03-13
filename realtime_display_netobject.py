@@ -34,9 +34,6 @@ def display_netobject_data(root):
             print("internal quality in/out: %8d %8d" % child.internal_quality)
         if child.rtt is not None:
             print("                    rtt: %8d %8d" % child.rtt)
-
-
-        print(child.rtt)
         
         for sub in child.children:
             print("%s/%s/%s" % (path, sub.name, sub.rawname))
@@ -54,6 +51,9 @@ def display_netobject_data(root):
         print
         print("%s" % ("=" * 60))
     print
+    if len(root.children) > 0:
+        rt.break_update_forever()
+
 
 #
 # Build a view

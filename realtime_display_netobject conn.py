@@ -34,6 +34,8 @@ def display_netobject_data(root):
         print("matching rules : %s" % child.shaping_rules)
         
         print
+    if len(root) > 0:
+        rt.break_update_forever()
 
 #
 # Build a view
